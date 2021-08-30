@@ -8,20 +8,18 @@ class Clock extends React.Component {
         this.getWeekDay = this.getWeekDay.bind(this);
         this.getTodayDate = this.getTodayDate.bind(this);
         this.getTime = this.getTime.bind(this);
+        this.days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+        this.monthes=['Янв','Фев', 'Мар','Апр', 'Май','Июн','Июл',
+        'Авг', 'Сен','Окт', 'Ноя','Дек'];
     }
 
     getWeekDay() {
-        const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
-
-        return days[this.state.date.getDay()];
+        return this.days[this.state.date.getDay()];
     }
 
     getTodayDate() {
         const date = this.state.date;
-        const monthes=['Янв','Фев', 'Мар','Апр', 'Май','Июн','Июл',
-            'Авг', 'Сен','Окт', 'Ноя','Дек'];
-        
-        return monthes[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+        return this.monthes[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
     }
 
     getTime() {

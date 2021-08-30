@@ -116,8 +116,8 @@ class ToDo extends React.Component {
     }
 
     render() {
-        const ToDoItems = this.state.filteredNotes.map((item, index) => <Note key={item.text} notes={item} index={index} deleteNote={this.deleteNote} onChangeStatus={this.onChangeStatus} />);
-        const tabsItems = this.tabs.map((tab, index) => <div className={tab.isActive ? (styles.options__item + " " + styles.options__item_active) : styles.options__item} key={tab.name} onClick={() => {
+        const ToDoItems = this.state.filteredNotes.map(item => <Note key={item.text} note={item} deleteNote={this.deleteNote} onChangeStatus={this.onChangeStatus} />);
+        const TabsItems = this.tabs.map(tab => <div className={tab.isActive ? (styles.tabs__item + " " + styles.tabs__item_active) : styles.tabs__item} key={tab.name} onClick={() => {
             this.onClickTabs(tab.type);
         }}>{tab.name}</div>);
 
@@ -125,15 +125,19 @@ class ToDo extends React.Component {
             <div className={styles.todo}>
                 <Header />
                 <div>
-                    <textarea className={styles.input} onKeyPress={this.onKeyPressHandler} onChange={this.onChangeNote} value={this.state.newNoteText} placeholder="Записать что-то еще..." ></textarea>
-                    {
-                        !this.state.isLengthMatch
-                        && <p className={styles.warning}>Длина записи не может превышать 20</p>
-                    }
-                    <div className={styles.options}>
-                        {tabsItems}
+                    <div className={styles.todo__input + ' ' + styles.input}>
+                        <textarea className={styles.input__textarea} onKeyPress={this.onKeyPressHandler} onChange={this.onChangeNote} value={this.state.newNoteText} placeholder="Записать что-то еще..." ></textarea>
+                        {
+                            !this.state.isLengthMatch
+                            && <p className={styles.input__warning}>Длина записи не может превышать 20</p>
+                        }
                     </div>
-                    <ul className={styles.list}>{ToDoItems}</ul>
+                    <div className={styles.todo__list + ' ' + styles.list} >
+                        <div className={styles.list__tabs + ' ' + styles.tabs}>
+                            {TabsItems}
+                        </div>
+                        <ul className={styles.list__items + ' ' + styles.items}>{ToDoItems}</ul>
+                    </div>
                 </div>
                 <Counter notes={this.state.notes} />
             </div >

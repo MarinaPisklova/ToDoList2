@@ -2,15 +2,15 @@ import React from 'react';
 import styles from './Counter.module.scss';
 
 class Counter extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {notes: this.props.notes};
+        this.state = { notes: this.props.notes };
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.notes.length !== prevProps.notes.length) {
-          this.setState({
-              notes: this.props.notes,
+            this.setState({
+                notes: this.props.notes,
             });
         }
     }
@@ -20,13 +20,10 @@ class Counter extends React.Component {
         this.noteUndone = 0;
 
         this.state.notes.forEach(note => {
-            if(note.status)
-                this.noteDone++;
-            else
-                this.noteUndone++;
+            note.status ? this.noteDone++ : this.noteUndone++;
         });
 
-        return(
+        return (
             <div className={styles.counter}>
                 <span>Выполнено: {this.noteDone} / Невыполнено: {this.noteUndone}</span>
             </div>
