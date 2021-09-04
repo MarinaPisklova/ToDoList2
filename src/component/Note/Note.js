@@ -19,16 +19,19 @@ class Note extends React.Component {
 
     render() {
         return (
-            <li className={styles.note}>
-                <div className={styles.note__container}>
-                    <div className={styles.note__checkbox + ' ' + styles.checkbox}>
-                        <input className={styles.checkbox__input} id='checkbox' type='checkbox' onChange={this.changeStatus} checked={this.props.note.status}></input>
-                        <label className={styles.checkbox__label}></label>
+            <div>
+                <li className={styles.note}>
+                    <div className={styles.note__container}>
+                        <div className={styles.note__checkbox + ' ' + styles.checkbox}>
+                            <input className={styles.checkbox__input} id='checkbox' type='checkbox' onChange={this.changeStatus} checked={this.props.note.status}></input>
+                            <label className={styles.checkbox__label}></label>
+                        </div>
+                        <div className={styles.note__text + ' ' + styles.text} onClick={this.changeStatus}>{this.props.note.text}</div>
                     </div>
-                    <div className={styles.note__text + ' ' + styles.text} onClick={this.changeStatus}>{this.props.note.text}</div>
-                </div>
-                <img className={styles.note__trash} onClick={this.deleteThisNote} src={trash} alt="trash"></img>
-            </li>
+                    <img className={styles.note__trash} onClick={this.deleteThisNote} src={trash} alt="trash"></img>
+                </li>
+            </div>
+
         )
     }
 }

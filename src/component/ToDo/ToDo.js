@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './ToDo.module.scss';
 import Counter from "../Counter/Counter";
 import Header from "../Header/Header";
+import { Form } from "react-bootstrap";
 
 class ToDo extends React.Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class ToDo extends React.Component {
         this.onChangeStatus = this.onChangeStatus.bind(this);
         this.onKeyPressHandler = this.onKeyPressHandler.bind(this);
         this.onClickTabs = this.onClickTabs.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     onChangeStatus(id) {
@@ -74,7 +76,12 @@ class ToDo extends React.Component {
         }
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+    }
+
     onKeyPressHandler(event) {
+
         if (event.charCode === 13 && this.state.isLengthMatch) {
             if (this.state.newNoteText.length !== 0) {
                 let newNotes = this.state.notes;
@@ -126,7 +133,9 @@ class ToDo extends React.Component {
                 <Header />
                 <div>
                     <div className={styles.todo__input + ' ' + styles.input}>
-                        <textarea className={styles.input__textarea} onKeyPress={this.onKeyPressHandler} onChange={this.onChangeNote} value={this.state.newNoteText} placeholder="Записать что-то еще..." ></textarea>
+                        <Form onSubmit={this.handleSubmit}>
+                            <Form.Control className={styles.input__textarea} onKeyPress={this.onKeyPressHandler} onChange={this.onChangeNote} value={this.state.newNoteText} type="email" placeholder="Записать что-то еще..." />
+                        </Form>
                         {
                             !this.state.isLengthMatch
                             && <p className={styles.input__warning}>Длина записи не может превышать 20</p>
