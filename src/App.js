@@ -1,12 +1,12 @@
 import React from 'react';
-import ToDo from './component/ToDo/ToDo'
 import styles from './App.module.scss'
+import ToDoContainer from './component/ToDo/ToDoContainer';
 
 class App extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-          <ToDo />
+          <ToDoContainer />
       </div>
     )
   }
